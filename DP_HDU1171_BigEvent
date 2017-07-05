@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner input = new Scanner(System.in);
+		int n=input.nextInt();
+		while(n>0){
+			//因为数组大小可能计算结果错误，本来是动态的n×100，结果不正确
+			int[] v=new int[500011];
+			int[] dp=new int[250011];
+			int sum = 0;
+			int t1, t2;
+			int cnt=0;
+			for(int i=0; i<n; i++){
+				t1=input.nextInt();
+				t2=input.nextInt();
+				sum += t1*t2;
+				while(t2--!=0)
+					v[cnt++]=t1;
+			}
+//			for(int i=0;i<=n+1; i++){
+//				dp[i]=0;
+//			}
+			dp[0]=0;
+
+			for(int i=0;i<cnt;i++){
+				for(int j=sum/2;j>=v[i];j--){
+						if(dp[j-v[i]]+v[i]>dp[j]){
+							dp[j]=dp[j-v[i]]+v[i];
+						}else
+							dp[j]=dp[j];
+					
+				}
+			}
+			System.out.println(sum-dp[sum/2]+" "+ dp[sum/2]);
+
+		    n = input.nextInt();
+		}
+	}
+
+}
