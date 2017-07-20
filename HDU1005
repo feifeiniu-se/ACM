@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Main {
+
+	static int f(int a, int b, int n){
+		if(n==1) return 1;
+		else if(n==2) return 1;
+		else return (a*f(a, b, n-1)+b*f(a, b, n-1))%7;
+
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input=new Scanner(System.in);
+		int a, b, n;
+		a=input.nextInt()%7;
+		b=input.nextInt()%7;
+		n=input.nextInt();
+		while(a!=0 && b!=0 && n!=0){
+			
+			System.out.println(f(a, b, n));
+			a=input.nextInt();
+			b=input.nextInt();
+			n=input.nextInt();
+		}
+		
+	}
+
+}
