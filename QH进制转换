@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int e[60]={0};
+    int g[60]={0};
+    int flage=0;
+    int flagg=0;
+    for(int i=2; i<=60; i++){
+        int r=0;
+        int j;
+        for(j=2; j*j<i; j++){
+            if(i%j==0){
+               r+=j;
+               r+=i/j;
+            }
+        }
+        if(j*j==i)
+            r+=j;
+        if(i==r+1){
+            e[flage]=i;
+            flage++;
+        }else if(i<r+1){
+            g[flagg]=i;
+            flagg++;
+        }
+    }
+    cout << "E: ";
+    for(int i=0; i<flage-1; i++){
+        cout << e[i]<<" ";
+    }
+    cout << e[flage-1] << endl;
+    cout << "G: ";
+    for(int j=0; j<flagg-1; j++){
+        cout << g[j] << " ";
+    }
+    cout << g[flagg-1] << endl;
+    return 0;
+}
