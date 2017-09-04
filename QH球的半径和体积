@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+#include <math.h>
+#include <stdio.h>
+
+using namespace std;
+
+int main()
+{
+    double r, v;
+    int x0, y0, z0, x1, y1, z1;
+    int k;
+    while(cin>>x0>>y0>>z0>>x1>>y1>>z1){
+        k=(x1-x0)*(x1-x0)+(y1-y0)*(y1-y0)+(z1-z0)*(z1-z0);
+        r=sqrt(k);
+        v=acos(-1)*k*r*4/3;
+        printf("%.3lf ", r);
+        printf("%.3lf\n", v);//printf是一个很强大的输出工具,但是不知道为什么需要写成%.3lf，不然的话输出结果不正确
+        //printf("%.3lf %.3lf\n", r, v);
+        //cout.precision(3);
+        //cout.setf(ios::fixed);
+        //cout << r << " " << v << endl;
+    }
+
+    return 0;
+}
