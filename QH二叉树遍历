@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string.h>
+//NULL一定是大写的，不可以是小写的，build函数中的&符号一定要加，否则就不会输出
+
+using namespace std;
+
+struct Node{
+    char data;
+    Node *left, *right;
+};
+
+char s[101];
+
+void build(Node *&root, int &index, int n){
+    if(n==0) return;
+    else
+    {
+        if(n==index) return;
+        if(s[index]=='#'){
+            root=NULL;
+            index++;
+        }else{
+            root=new Node;
+            root->data=s[index];
+            index++;
+            build(root->left, index, n);
+            build(root->right, index, n);
+        }
+
+    }
+}
+
+void print(Node *root){
+    if(root!=NULL){
+        print(root->left);
+        cout << root->data << " ";
+        print(root->right);
+    }
+    //if(root->left==null) cout << root->data << " ";
+}
+
+int main()
+{
+    while(cin>>s){
+        Node *root=NULL;
+        int len=strlen(s);
+        int index=0;
+        build(root, index, len);
+        print(root);
+        cout << endl;
+    }
+    return 0;
+}
