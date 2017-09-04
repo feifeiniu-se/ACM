@@ -1,0 +1,54 @@
+#include <iostream>
+
+using namespace std;
+
+int cal(char a){
+    int click;
+    if(a<'p'){
+        click = (a-'a')%3+1;
+    }else if('p'<=a && a<='s'){
+        click = a-'o';
+    }else if('t'<=a && a<='v'){
+        click = a-'s';
+    }else {
+        click = a-'v';
+    }
+    return click;
+}
+
+int dif(char a, char b){
+    if(-3<=a-b && a-b<=3){
+        if(a<'p' && b<'p'){
+            if((a-'a')/3==(b-'a')/3)
+                return 2;
+        }else if('p'<=a && a<='s' && 'p'<=b&&b<='s' ){
+            return 2;
+        }else if('t'<=a&&a<='v' && 't'<=b&&b<='v'){
+            return 2;
+        }else if('w'<=a&&a<='z' && 'w'<=b&&b<='z'){
+            return 2;
+        }else {
+            return 0;
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    char arr[101]={'0'};
+    while(cin>>arr){
+        int res=0;
+        res+=cal(arr[0]);
+        for(int i=1; arr[i]!=0; i++){
+                //cout << res << " ";
+            res += dif(arr[i], arr[i-1]);
+           // cout << res << " ";
+            res += cal(arr[i]);
+            //cout << res << endl;
+        }
+        cout << res << endl;
+    }
+
+    return 0;
+}
