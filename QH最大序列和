@@ -1,0 +1,31 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 1000001
+using namespace std;
+//因为数组大小不可以，如果是int的100001，通过率为91%，再找找其他的解决办法吧
+
+int main()
+{
+    int n;
+    long long *s;
+    long long *dp;
+    int maxS;
+    dp=(long long *)malloc(MAX*sizeof(long long));
+    s=(long long *)malloc(MAX*sizeof(long long));
+    while(cin>>n){
+        for(int i=0; i<n; i++){
+            cin>>s[i];
+        }
+        dp[0]=s[0];
+        maxS=s[0];
+        for(int i=1; i<n; i++){
+            dp[i]=(dp[i-1]+s[i])>s[i]?(dp[i-1]+s[i]):s[i];
+            if(dp[i]>maxS)
+                maxS=dp[i];
+        }
+        cout << maxS << endl;
+
+    }
+    return 0;
+}
