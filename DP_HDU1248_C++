@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int t;
+    int a[101]={0};
+    while(cin>>t){
+        for(int i=1; i<=t; i++){
+            cin>>a[i];
+        }
+        for(int k=1; k<=t; k++){
+            int dp[10001]={0};
+            int value[4]={0, 150, 200, 350};
+            for(int i=1; i<=3; i++){
+                for(int j=value[i]; j<=a[k]; j++){
+                    dp[j]=dp[j]>(dp[j-value[i]]+value[i])?dp[j]:(dp[j-value[i]]+value[i]);
+                }
+            }
+            cout << a[k]-dp[a[k]]<<endl;
+        }
+    }
+    return 0;
+}
