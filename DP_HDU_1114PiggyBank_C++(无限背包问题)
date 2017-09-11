@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+            int E, F;
+            cin>>E>>F;
+            int n;
+            cin>>n;
+            int p[5001];
+            int w[5001];
+            int dp[10000];
+            for(int i=0; i<=F-E; i++){
+                dp[i]=1000100;
+            }
+            dp[0]=0;
+
+            for(int k=1; k<=n; k++){
+                cin>>p[k]>>w[k];
+            }
+            for(int i=1; i<=n; i++){
+                for(int j=w[i]; j<=(F-E); j++){
+                    if(dp[j]<dp[j-w[i]]+p[i]){
+						dp[j]=dp[j];
+					}else
+						dp[j]=dp[j-w[i]]+p[i];
+                }
+            }
+            if(dp[F-E]<1000100)//这里刚开始写的是<=，结果就一直WA，不知道为什么
+                cout << "The minimum amount of money in the piggy-bank is " << dp[F-E] << "." << endl;
+            else
+                cout << "This is impossible." << endl;
+    }
+    return 0;
+}
