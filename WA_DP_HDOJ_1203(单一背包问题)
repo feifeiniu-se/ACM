@@ -1,0 +1,36 @@
+//不知道为什么一直WA
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <memory.h>
+
+using namespace std;
+
+int main()
+{
+    int m, n;
+    while(cin>>n>>m && n && m){
+        int a[10010];
+        double b[10010];
+        double dp[10010];
+        memset(dp, 0, sizeof(dp));
+        double temp=0;
+        for(int i=1; i<=m; i++){
+            cin>>a[i]>>b[i];
+        }
+        for(int i=1; i<=m; i++){
+            for(int j=n; j>=a[i]; j--){
+                temp=b[i]+dp[j-a[i]]-b[i]*dp[j-a[i]];
+                if(dp[j]>temp){
+                    dp[j]=dp[j];
+                }else{
+                    dp[j]=temp;
+                }
+            }
+        }
+        //cout.precision(1);
+        //cout.setf(ios::fixed);
+        printf("%.1lf%%\n",dp[n]*100);
+    }
+    return 0;
+}
